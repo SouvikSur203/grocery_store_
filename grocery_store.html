@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Market - Your Local Grocery</title>
+    <style>
+        /* --- RESET & BASIC STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #6cd388;
+            color: #20201f;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        header h1 { margin-bottom: 0.5rem; }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover { text-decoration: underline; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background-color: #e8f5e9;
+            text-align: center;
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- SLIDE TRANSITION STYLE --- */
+        .hero-slide-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin-top: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* The image that stays in the back */
+        .hero-back {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('group.jpeg'); /* Put your second image here */
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        /* The image that slides away */
+        .hero-front {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('store.png'); /* Your main first image */
+            background-size: cover;
+            background-position: center;
+            z-index: 2;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-right: 2px solid rgba(255,255,255,0.3);
+        }
+
+        /* Action: Slide to the right on hover */
+        .hero-slide-container:hover .hero-front {
+            transform: translateX(100%);
+        }
+
+        /* --- GALLERY STYLES (Kept Original) --- */
+        .gallery-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .gallery {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;      
+            object-fit: cover; 
+            transition: opacity 0.4s ease-in-out;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .gallery .img-hover { opacity: 0; z-index: 2; }
+        .gallery:hover .img-hover { opacity: 1; }
+
+        /* --- PRODUCT GRID --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h2.section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #3e3030;
+            padding-bottom: 10px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        .product-img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem; }
+
+        .product-price { color: #d32f2f; font-weight: bold; font-size: 1.3rem; }
+
+        /* --- CONTACT & FOOTER --- */
+        .contact-section {
+            background-color: #333;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .phone-number {
+            font-size: 2rem;
+            color: #81c784;
+            font-weight: bold;
+            display: block;
+            margin: 1rem 0;
+        }
+
+        footer {
+            background-color: #222;
+            color: #888;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Fresh Market Grocery</h1>
+        <h3>Quality Essentials for Your Home</h3>
+        <nav>
+            <a href="#products">Products</a>
+            <a href="#location">Store Location</a>
+            <a href="#contact">Call Us</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container" style="width: 100%;">
+            <h2>Welcome to Our Store</h2>
+            <p>Hover over the image to see our team!</p>
+            
+            <div class="hero-slide-container">
+                <div class="hero-back"></div> <div class="hero-front"></div> </div>
+
+            <div class="gallery-wrapper">
+                <div class="gallery">
+                    <img src="ami2.jpeg">
+                    <img src="group.jpeg" class="img-hover">
+                </div>
+                <div class="gallery">
+                    <img src="laptop1.jpeg">
+                    <img src="laptop2.jpeg" class="img-hover">
+                </div>
+                <div class="gallery">
+                    <img src="3_milk.png">
+                    <img src="2_apple.png" class="img-hover">
+                </div>
+                <div class="gallery">
+                    <img src="5_banana.png">
+                    <img src="7_basmati rice.png" class="img-hover">
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem;" id="location">
+                <strong><h2>Address:</h2></strong>
+                <h3>Halisahar Jetia Dighir Par, Near Jubok Sangha Club</h3>
+                <h3>city-Halisahar, PinCode-743135</h3>
+            </div>
+        </div>
+    </section>
+
+    <main class="container" id="products">
+        <h2 class="section-title">Today's Prices</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="2_apple.png" alt="Apples" class="product-img">
+                <h3 class="product-name">Fresh Red Apples</h3>
+                <p class="product-price">₹200 <span class="unit">/ kg</span></p>
+            </div>
+            <div class="product-card">
+                <img src="3_milk.png" alt="Milk" class="product-img">
+                <h3 class="product-name">Dairy Farm Milk</h3>
+                <p class="product-price">₹60 <span class="unit">/ liter</span></p>
+            </div>
+            <div class="product-card">
+                <img src="4_bread.png" alt="Bread" class="product-img">
+                <h3 class="product-name">Whole Wheat Bread</h3>
+                <p class="product-price">₹22 <span class="unit">/ pound</span></p>
+            </div>
+            <div class="product-card">
+                <img src="5_banana.png" alt="Bananas" class="product-img">
+                <h3 class="product-name">Organic Bananas</h3>
+                <p class="product-price">₹60 <span class="unit">/ dozon</span></p>
+            </div>
+            <div class="product-card">
+                <img src="6_egg.png" alt="Eggs" class="product-img">
+                <h3 class="product-name">Farm Fresh Eggs</h3>
+                <p class="product-price">₹8 <span class="unit">/ Piece</span></p>
+            </div>
+            <div class="product-card">
+                <img src="7_basmati rice.png" alt="Rice" class="product-img">
+                <h3 class="product-name">Basmati Rice</h3>
+                <p class="product-price">₹90 <span class="unit">/ 1kg bag</span></p>
+            </div>
+        </div>
+    </main>
+
+    <section class="contact-section" id="contact">
+        <h2>Order & Inquiry</h2><br>
+        <h4>We are take online booking and payment throung our number, please fell free to reach.</h4>
+        <h4>আমাদের নম্বরে অনলাইন বুকিং এবং পেমেন্ট হয়, অনুগ্রহ করে যোগাযোগ করতে দ্বিধা করবেন না।</h4>
+        <a href="tel:7595917082" style="text-decoration: none;">
+            <span class="phone-number">📞 (91) 75959 17082</span>
+        </a>
+        <a href="tel:93308 80893" style="text-decoration: none ;">
+            <span class="phone-number">📞 (91) 93308 80893</span>
+        </a>
+        <p>☀️7:00 AM - 11:30 PM</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Fresh Market Grocery. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
